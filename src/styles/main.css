@@ -1,0 +1,19 @@
+@import url("./../vendor/css/bootstrap.min.css");
+
+@font-face {
+    font-family: 'nunito-sans';
+    src: url('./../assets/fonts/NunitoSans_10pt-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nunito-sans-bolder';
+    src: url('./../assets/fonts/NunitoSans_10pt-ExtraBold.ttf') format('truetype');
+}
+
+body {
+    font-family: 'nunito-sans', sans-serif;
+}
+
+.nunito-bolder {
+    font-family: 'nunito-sans-bolder', 'sans-serif';
+}
