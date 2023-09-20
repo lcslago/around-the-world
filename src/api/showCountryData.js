@@ -3,9 +3,7 @@ const bodyMain = document.querySelector('[data-body-main]');
 const versionOfAPI = "v3.1"
 const endpointOfAPI = `https://restcountries.com/${versionOfAPI}/`;
 
-const main = (() => { showCountryData(); })()
-
-async function showCountryData() {
+export async function showCountryData() {
     let responseArr = [];
     const response = (await fetch(`${endpointOfAPI}all`)).json();
     responseArr = await response;
