@@ -5,16 +5,16 @@ const endpointOfAPI = `https://restcountries.com/${versionOfAPI}/`;
 
 export async function showCountryData() {
     let responseArr = [];
-    const response = (await fetch(`${endpointOfAPI}all`)).json();
-    responseArr = await response;
+    const response = (await fetch(`${endpointOfAPI}all`));
+    responseArr = await response.json();
 
     responseArr.forEach((_, index) => {
 
-        const countryFlag = responseArr[index].flags.svg;
         const countryName = responseArr[index].name.common;
         const countryPop = responseArr[index].population;
         const countryRegion = responseArr[index].region;
         const countryCapital = responseArr[index].capital;
+        const countryFlag = responseArr[index].cca2.toLowerCase();
 
         const isUndefined = (data) => data === undefined;
         const multipleCapitals = () => {
@@ -26,8 +26,10 @@ export async function showCountryData() {
         bodyMain.appendChild(document.createElement("div"))
             .innerHTML = `
             <a href="#" class="text-decoration-none">
-                <div class="card" style="width: 15rem; height: 20rem;">
-                    <img src="${countryFlag}" class="card-img-top" style="height: 150px">
+                <div class="card" style="width: 15rem; height: 22rem;">
+                    <div class="card-img-top fi fi-${countryFlag}" style="background-size:100%; background-position:top; width:100%; height:179px;">
+                    </div>
+                    <hr class="m-0">
                     <div class="d-flex flex-column card-body">
                         <span class="card-title nunito-bolder mb-3">
                             ${countryName}
@@ -45,8 +47,8 @@ export async function showCountryData() {
                             ${isUndefined(countryCapital) ? "" : countryCapital.join(', ')}
                         </span>
                     </div>
-                </div>   
-            </a> 
+                </div>
+            </a>
         `
     })
 }
