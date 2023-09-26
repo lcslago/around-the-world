@@ -12,10 +12,18 @@ export const setTheme = () => {
 }
 
 function onPageShow() {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     window.addEventListener('pageshow', () => {
-        localStorage !== "" ?
-            changeTheme(localStorage.getItem("theme")) :
+        if (savedTheme) {
+            changeTheme(savedTheme)
+        } else if (prefersDark) {
+            changeTheme("dark")
+        } else {
             pageBody.style.backgroundColor = "#F1EFEF";
+        }
     })
 }
 
