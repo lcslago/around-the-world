@@ -9,17 +9,27 @@
 </head>
 
 <body>
-    <header class="container">
-        <nav class="navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand fs-3 fw-bold nunito-bolder" href="./index.html">
-                    Where in the world?
-                </a>
-                <button style="width: 120px; height: 30px;" data-theme></button>
+    <header class="shadow-sm position-relative">
+        <nav class="container navbar pt-4 pb-4">
+            <div class="container-fluid d-flex align-items-center">
+                <nav class="navbar-brand m-0 p-0">
+                    <a class="navbar-brand m-0 p-0 fs-3  fw-bold nunito-bolder" href="./index.html">
+                        Where in the world?
+                    </a>
+                </nav>
+                <button class="d-flex justify-content-center bg-transparent border-0 p-0 fs-6 fw-bold"
+                    style="width: 110px; height: 20px;" data-theme>
+                </button>
             </div>
         </nav>
     </header>
     <main class="d-inline-flex flex-wrap gap-5 justify-content-center" data-body-main>
+        <div class="d-flex justify-content-between w-100 mt-5 container">
+            <input type="search" name="" id="" class="shadow-sm border-0" hidden data-filter>
+            <select name="" id="" class="shadow-sm border-0" hidden data-filter>
+
+            </select>
+        </div>
     </main>
     <footer></footer>
     <script src="./src/app.js" type="module"></script>

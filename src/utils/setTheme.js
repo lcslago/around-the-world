@@ -5,7 +5,7 @@ export const setTheme = () => {
     onPageShow();
 
     themeSelector.addEventListener('click', () => {
-        themeSelector.innerHTML === "Dark Mode" ? changeTheme("dark") : changeTheme("light");
+        themeSelector.innerHTML.includes("Dark Mode") ? changeTheme("dark") : changeTheme("light");
         let themeData = document.documentElement.attributes[2].nodeValue;
         localStorage.setItem("theme", `${themeData}`);
     });
@@ -29,12 +29,21 @@ function onPageShow() {
 
 function changeTheme(theme) {
     document.documentElement.setAttribute("data-bs-theme", theme);
+    theme === "dark" ? setThemeButton("light") : setThemeButton("dark");
+}
+
+function setThemeButton(theme) {
+    const moonIcon = "🌓";
+    const sunIcon = "☀️";
 
     if (theme === "dark") {
-        themeSelector.innerHTML = "Light Mode";
-        pageBody.style.backgroundColor = "#191717";
-    } else {
-        themeSelector.innerHTML = "Dark Mode";
+        themeSelector.innerHTML = `${moonIcon} Dark Mode`;
+        themeSelector.setAttribute("title", "Toggle Dark Mode");
         pageBody.style.backgroundColor = "#F1EFEF";
+
+    } else if (theme === "light") {
+        themeSelector.innerHTML = `${sunIcon} Light Mode`;
+        themeSelector.setAttribute("title", "Toggle Light Mode");
+        pageBody.style.backgroundColor = "#191717";
     }
 }
