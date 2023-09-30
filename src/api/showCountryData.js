@@ -21,22 +21,22 @@ export function showCountryData(arr, currentPosition, currentBatch) {
         bodyMain.appendChild(document.createElement("div"))
             .innerHTML = `
             <a href="#" class="text-decoration-none">
-                <div class="card shadow border-0" style="width: 15rem; height: 22rem;">
-                    <div class="card-img-top shadow-sm fi fi-${countryFlag}" style="background-size:100%; background-position:top; width:100%; height:179px;">
+                <div class="card shadow border-0 col-sm-6 card-container">
+                    <div class="card-img-top shadow-sm fi fi-${countryFlag} country-flag">
                     </div>
                     <div class="d-flex flex-column card-body">
                         <span class="card-title nunito-bolder mb-3">
                             ${countryName}
                         </span>
-                        <span class="card-text" style="font-size: .9rem">
+                        <span class="card-text">
                             <b>Population:</b>
                             ${new Intl.NumberFormat().format(countryPop)}
                         </span>
-                        <span class="card-text" style="font-size: .9rem">
+                        <span class="card-text">
                             <b>Region:</b>
                             ${countryRegion}
                         </span>
-                        <span class="card-text" style="font-size: .9rem">
+                        <span class="card-text">
                             <b>${multipleCapitals() ? "Capitals:" : "Capital:"}</b>
                             ${isUndefined(countryCapital) ? "" : countryCapital.join(', ')}
                         </span>

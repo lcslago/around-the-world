@@ -13,9 +13,9 @@
 <body>
     <header class="shadow-sm position-relative">
         <nav class="container navbar pt-4 pb-4">
-            <div class="container-fluid d-flex align-items-center">
+            <div class="container-fluid d-flex flex-column flex-md-row gap-md-0 gap-2 align-items-center">
                 <nav class="navbar-brand m-0 p-0">
-                    <a class="navbar-brand m-0 p-0 fs-3  fw-bold nunito-bolder" href="./index.html">
+                    <a class="navbar-brand m-0 p-0 fs-3 fw-bold nunito-bolder" href="./index.html">
                         Where in the world?
                     </a>
                 </nav>
@@ -26,10 +26,11 @@
         </nav>
     </header>
     <main class="d-inline-flex flex-wrap gap-5 justify-content-center w-100 min-vh-100" data-body-main>
-        <div class="d-flex justify-content-between w-100 mt-5 container">
-            <input type="search" name="" id="" class="shadow-sm border-0" hidden data-filter>
+        <div class="d-flex justify-content-between flex-column flex-md-row gap-5 w-100 mt-4 mt-md-5 container">
+            <input type="search" placeholder="Search for a country..." name="" id="" class="shadow-sm border-0" hidden
+                data-filter>
             <select name="" id="" class="shadow-sm border-0" hidden data-filter>
-
+                <option value="">Filter by Region</option>
             </select>
         </div>
     </main>

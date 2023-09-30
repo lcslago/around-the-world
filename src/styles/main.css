@@ -19,3 +19,39 @@ body {
 .nunito-bolder {
     font-family: 'nunito-sans-bolder', 'sans-serif';
 }
+
+.card-container {
+    width: 15rem;
+    height: 22rem;
+}
+
+.country-flag {
+    height: 179px;
+    background-size: 100%;
+    background-position: top;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-text {
+    font-size: .9rem;
+}
+
+@media (max-width: 820px) {
+    .card-container {
+        width: 20rem;
+        height: 28rem;
+    }
+
+    .country-flag {
+        height: 240px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+}
