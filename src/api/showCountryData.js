@@ -1,22 +1,15 @@
 const bodyMain = document.querySelector('[data-body-main]');
-const countryDataFilter = document.querySelectorAll('[data-filter]');
 
-const versionOfAPI = "v3.1"
-const endpointOfAPI = `https://restcountries.com/${versionOfAPI}/`;
+export function showCountryData(arr, currentPosition, currentBatch) {
+    const maxIndex = Math.min(currentBatch, arr.length);
 
-export async function showCountryData() {
-    let responseArr = [];
-    const response = (await fetch(`${endpointOfAPI}all`));
-    responseArr = await response.json();
-    countryDataFilter.forEach(filter => filter.hidden = false);
+    for (let index = currentPosition; index < maxIndex; index++) {
 
-    responseArr.forEach((_, index) => {
-
-        const countryName = responseArr[index].name.common;
-        const countryPop = responseArr[index].population;
-        const countryRegion = responseArr[index].region;
-        const countryCapital = responseArr[index].capital;
-        const countryFlag = responseArr[index].cca2.toLowerCase();
+        const countryName = arr[index].name.common;
+        const countryPop = arr[index].population;
+        const countryRegion = arr[index].region;
+        const countryCapital = arr[index].capital;
+        const countryFlag = arr[index].cca2.toLowerCase();
 
         const isUndefined = (data) => data === undefined;
         const multipleCapitals = () => {
@@ -51,5 +44,5 @@ export async function showCountryData() {
                 </div>
             </a>
         `
-    })
+    }
 }

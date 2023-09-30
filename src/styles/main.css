@@ -1,14 +1,15 @@
 @import url("./../vendor/css/bootstrap.min.css");
-@import url("./../vendor/css/flag-icons.min.css");
 
 @font-face {
     font-family: 'nunito-sans';
     src: url('./../assets/fonts/NunitoSans_10pt-Light.ttf') format('truetype');
+    font-display: fallback;
 }
 
 @font-face {
     font-family: 'nunito-sans-bolder';
     src: url('./../assets/fonts/NunitoSans_10pt-ExtraBold.ttf') format('truetype');
+    font-display: fallback;
 }
 
 body {
