@@ -7,6 +7,13 @@
     <link rel="preconnect" href="https://restcountries.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css">
     <link rel="stylesheet" href="./src/styles/main.css">
+    <script>
+        if (localStorage.getItem("theme")) {
+            document.documentElement.setAttribute("data-bs-theme", localStorage.getItem("theme"));
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+        }
+    </script>
     <title>Where in the world?</title>
 </head>
 
