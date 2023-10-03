@@ -1,5 +1,6 @@
-const themeSelector = document.querySelector('[data-theme]');
-const pageBody = document.querySelector('[data-body-main]');
+const $ = document.querySelector.bind(document);
+const themeSelector = $('[data-theme]');
+const pageBody = $('[data-body-main]');
 
 export const setTheme = () => {
     onPageShow();
@@ -40,10 +41,22 @@ function setThemeButton(theme) {
         themeSelector.innerHTML = `${moonIcon} Dark Mode`;
         themeSelector.setAttribute("title", "Toggle Dark Mode");
         pageBody.style.backgroundColor = "#F1EFEF";
+        setFilterStyles("light", "dark");
 
     } else if (theme === "light") {
         themeSelector.innerHTML = `${sunIcon} Light Mode`;
         themeSelector.setAttribute("title", "Toggle Light Mode");
-        pageBody.style.backgroundColor = "#191717";
+        pageBody.style.backgroundColor = "#16181b";
+        setFilterStyles("dark", "light");
     }
+}
+
+function setFilterStyles(themeOne, themeTwo) {
+    $('[data-dropdown]').classList.add(`btn-${themeOne}`);
+    $('[data-dropdown]').classList.remove(`btn-${themeTwo}`);
+
+    let colorFill;
+    themeOne === "dark" ? colorFill = "#fff" : colorFill = "#000";
+
+    $('[data-search-icon]').style.fill = colorFill;
 }

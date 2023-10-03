@@ -12,11 +12,7 @@ export function showCountryData(arr, currentPosition, currentBatch) {
         const countryFlag = arr[index].cca2.toLowerCase();
 
         const isUndefined = (data) => data === undefined;
-        const multipleCapitals = () => {
-            if (!isUndefined(countryCapital)) {
-                return countryCapital.length > 1;
-            }
-        }
+        const multipleCapitals = () => !isUndefined(countryCapital) && countryCapital.length > 1;
 
         bodyMain.appendChild(document.createElement("div"))
             .innerHTML = `

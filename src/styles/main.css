@@ -20,6 +20,14 @@ body {
     font-family: 'nunito-sans-bolder', 'sans-serif';
 }
 
+.search-bar {
+    width: 50%;
+}
+
+.dropdown-container {
+    width: 25%;
+}
+
 .card-container {
     width: 15rem;
     height: 22rem;
@@ -38,13 +46,21 @@ body {
 }
 
 @media (max-width: 820px) {
+    .search-bar {
+        width: 100%;
+    }
+
+    .dropdown-container {
+        width: 50%;
+    }
+
     .card-container {
-        width: 20rem;
-        height: 28rem;
+        width: 19rem;
+        height: 27rem;
     }
 
     .country-flag {
-        height: 240px;
+        height: 228px;
     }
 
     .card-title {
