@@ -22,8 +22,6 @@ function onPageShow() {
             changeTheme(savedTheme)
         } else if (prefersDark) {
             changeTheme("dark")
-        } else {
-            pageBody.style.backgroundColor = "#F1EFEF";
         }
     })
 }
