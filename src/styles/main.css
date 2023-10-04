@@ -26,6 +26,7 @@ body {
 
 .dropdown-container {
     width: 25%;
+    height: 50px;
 }
 
 .card-container {
@@ -69,5 +70,52 @@ body {
 
     .card-text {
         font-size: 1rem;
+    }
+}
+
+[data-bs-theme="dark"] {
+
+    .body,
+    .country-card,
+    .form-control,
+    .dropdown-container,
+    .dropdown-menu {
+        background-color: hsl(209, 23%, 22%);
+    }
+
+    .main {
+        background-color: hsl(207, 26%, 17%);
+    }
+
+    .search-icon {
+        fill: white;
+    }
+
+    .dropdown-item:hover {
+        background-color: hsl(207, 26%, 17%);
+    }
+
+    .dropdown-item:active {
+        background-color: #F1EFEF;
+        color: black;
+    }
+}
+
+[data-bs-theme="light"] {
+
+    .main {
+        background-color: #F1EFEF;
+
+        .dropdown-container {
+            background-color: white;
+        }
+
+        .dropdown-item:hover {
+            background-color: #F1EFEF;
+        }
+
+        .dropdown-item:active {
+            background-color: hsl(209, 23%, 22%);
+        }
     }
 }

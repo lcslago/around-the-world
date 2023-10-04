@@ -17,7 +17,7 @@ export function showCountryData(arr, currentPosition, currentBatch) {
         bodyMain.appendChild(document.createElement("div"))
             .innerHTML = `
             <a href="#" class="text-decoration-none">
-                <div class="card shadow border-0 col-sm-6 card-container">
+                <div class="card country-card shadow border-0 col-sm-6 card-container">
                     <div class="card-img-top shadow-sm fi fi-${countryFlag} country-flag">
                     </div>
                     <div class="d-flex flex-column card-body">

@@ -34,29 +34,15 @@ function changeTheme(theme) {
 }
 
 function setThemeButton(theme) {
-    const moonIcon = "🌓";
-    const sunIcon = "☀️";
+    const moonIcon = "🌚";
+    const sunIcon = "🌝";
 
     if (theme === "dark") {
         themeSelector.innerHTML = `${moonIcon} Dark Mode`;
         themeSelector.setAttribute("title", "Toggle Dark Mode");
-        pageBody.style.backgroundColor = "#F1EFEF";
-        setFilterStyles("light", "dark");
 
     } else if (theme === "light") {
         themeSelector.innerHTML = `${sunIcon} Light Mode`;
         themeSelector.setAttribute("title", "Toggle Light Mode");
-        pageBody.style.backgroundColor = "#16181b";
-        setFilterStyles("dark", "light");
     }
-}
-
-function setFilterStyles(themeOne, themeTwo) {
-    $('[data-dropdown]').classList.add(`btn-${themeOne}`);
-    $('[data-dropdown]').classList.remove(`btn-${themeTwo}`);
-
-    let colorFill;
-    themeOne === "dark" ? colorFill = "#fff" : colorFill = "#000";
-
-    $('[data-search-icon]').style.fill = colorFill;
 }
