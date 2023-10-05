@@ -35,15 +35,8 @@ export function filterCountryData(arr) {
             const filteredCountryList = countryList
                 .filter((country) => country.region === `${filteredCountryRegions[index]}`);
 
-            filteredCountryList.forEach(country => {
-                const countryName = country.name.common;
-                const countryPop = country.population;
-                const countryRegion = country.region;
-                const countryCapital = country.capital;
-                const countryFlag = country.cca2.toLowerCase();
+            filteredCountryList.forEach(country => renderCountryData(country));
 
-                renderCountryData(countryName, countryPop, countryRegion, countryCapital, countryFlag);
-            })
             // console.log(filteredCountryList.length);
             isFiltering = true;
         })

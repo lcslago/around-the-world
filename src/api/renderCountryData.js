@@ -1,5 +1,11 @@
-export function renderCountryData(countryName, countryPop, countryRegion, countryCapital, countryFlag) {
+export function renderCountryData(data) {
     const bodyPage = document.querySelector('[data-country-cards]');
+
+    const countryName = data.name.common;
+    const countryPop = data.population;
+    const countryRegion = data.region;
+    const countryCapital = data.capital;
+    const countryFlag = data.cca2.toLowerCase();
 
     const isUndefined = (data) => data === undefined;
     const multipleCapitals = () => !isUndefined(countryCapital) && countryCapital.length > 1;

@@ -1,7 +1,7 @@
-import { fetchCountryData } from "./api/fetchCountryData.js";
+import { renderHomePage } from "./utils/renderHomePage.js";
 import { setTheme } from "./utils/setTheme.js";
 
 (() => {
-    fetchCountryData();
+    renderHomePage();
     setTheme();
 })()
