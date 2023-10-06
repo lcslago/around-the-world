@@ -93,8 +93,9 @@ function returnNestedData(obj) {
     for (const key in obj) {
         if (typeof obj[key] === 'object') {
             nestedData = nestedData.concat(returnNestedData(obj[key]));
+        } else {
+            nestedData.push(obj[key]);
         }
-        nestedData.push(obj[key]);
     }
     return nestedData;
 }
