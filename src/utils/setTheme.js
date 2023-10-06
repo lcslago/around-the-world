@@ -22,6 +22,8 @@ function onPageShow() {
             changeTheme(savedTheme)
         } else if (prefersDark) {
             changeTheme("dark")
+        } else {
+            changeTheme("light");
         }
     })
 }

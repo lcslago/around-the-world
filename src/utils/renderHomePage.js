@@ -16,6 +16,7 @@ export async function renderHomePage() {
         currentPosition,
         currentBatch,
         cardsPerScroll);
+
 }
 
 function infinityScrolling(arr, currentPosition, currentBatch, cardsPerScroll) {
