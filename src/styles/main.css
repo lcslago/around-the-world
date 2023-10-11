@@ -55,6 +55,10 @@ body {
     font-size: .9rem;
 }
 
+.search-404 {
+    padding-left: 10rem;
+}
+
 .search-off-icon {
     width: 20rem;
     user-select: none;
@@ -86,6 +90,17 @@ body {
 
     .card-text {
         font-size: 1rem;
+    }
+
+    .search-404 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-left: 0;
+
+        .search-off-icon {
+            width: 15rem;
+        }
     }
 }
 

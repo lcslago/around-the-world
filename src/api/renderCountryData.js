@@ -46,12 +46,12 @@ export function renderCountryData(data, type) {
 
             divElement.classList.add("w-100");
             divElement.innerHTML = `
-                        <div class="d-flex justify-content-left gap-5" style="padding-left: 10rem">
+                        <div class="d-flex justify-content-left gap-lg-5 search-404">
                             <img src='./src/assets/img/search-off.svg' alt="Result not found" class="search-off-icon"/>
-                            <div class="d-flex flex-column justify-content-center">
+                            <div class="container d-flex flex-column justify-content-center">
                                 <h2 class="nunito-bolder">Result not found</h2>
-                                <hr class="w-50">
-                                <p class="w-50">
+                                <hr class="col-lg-6">
+                                <p class="col-lg-6">
                                     Your search - <strong>${searchBar.value}</strong> - did not match any country.
                                     Please, make sure all words are spelled correctly.
                                 </p>
