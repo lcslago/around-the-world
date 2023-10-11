@@ -35,6 +35,6 @@ function showCountryData(arr, currentPosition, currentBatch) {
     const maxIndex = Math.min(currentBatch, arr.length);
 
     for (let index = currentPosition; index < maxIndex; index++) {
-        renderCountryData(arr[index]);
+        renderCountryData(arr[index], 'card');
     }
 }

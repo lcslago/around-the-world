@@ -55,6 +55,13 @@ body {
     font-size: .9rem;
 }
 
+.search-off-icon {
+    width: 20rem;
+    user-select: none;
+    pointer-events: none;
+    opacity: .2;
+}
+
 @media (max-width: 820px) {
     .search-bar {
         width: 100%;
@@ -114,6 +121,10 @@ body {
 
     .btn-search:active {
         background-color: #4274B7;
+    }
+
+    .search-off-icon {
+        filter: invert();
     }
 }
 

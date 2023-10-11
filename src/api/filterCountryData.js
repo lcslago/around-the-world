@@ -35,7 +35,7 @@ export function filterCountryData(arr) {
                     .region === `${filteredCountryRegions[index]}`);
 
             filteredCountryList
-                .forEach(country => renderCountryData(country));
+                .forEach(country => renderCountryData(country, 'card'));
 
             isFiltering = true;
         })
@@ -43,51 +43,67 @@ export function filterCountryData(arr) {
     searchCountryData(countryList);
 }
 
+const searchBar = $('[data-search]');
 function searchCountryData(arr) {
     const searchBtn = $('[data-search-btn]');
+    const searchInfo = $('[data-search-info]');
 
-    searchBtn
-        .addEventListener('click', () => startSearching(arr));
+    searchBar.addEventListener('focus',
+        () => searchInfo.innerHTML = "You can search in your native language");
+    searchBar.addEventListener('blur',
+        () => searchInfo.innerHTML = "");
 
-    $('[data-search]')
-        .addEventListener('keydown', (e) => {
-            if (e.key === "Enter") {
-                startSearching(arr);
-            }
-        })
+    searchBtn.addEventListener('click', () => startSearching(arr));
+    searchBar.addEventListener('keydown', (e) => {
+        if (e.key === "Enter") {
+            startSearching(arr);
+            searchBar.blur();
+        }
+    })
+}
+
+function returnSearchResults(arr, searchTerm) {
+    const searchResults = arr.filter((country) => [
+        returnNestedData(country.name),
+        country.region,
+        country.capital,
+        country.altSpellings,
+        country.continents,
+        country.tld,
+        returnNestedData(country.translations),
+        returnNestedData(country.languages),
+        returnNestedData(country.demonyms)
+    ].toString()
+        .toLowerCase()
+        .includes(searchTerm))
+
+    return searchResults;
 }
 
 function startSearching(arr) {
-    const searchBar = $('[data-search]');
-    let isSearching = false;
     const searchValue = searchBar.value.trim().toLowerCase();
+    let searchResults = returnSearchResults(arr, searchValue);
+    const clearSearchBar = () => searchBar.value = "";
+    let isSearching = false;
 
     if (searchValue !== "") {
-        const searchResults = arr
-            .filter((country) => [
-                returnNestedData(country.name),
-                country.region,
-                country.capital,
-                country.altSpellings,
-                country.continents,
-                country.tld,
-                returnNestedData(country.translations),
-                returnNestedData(country.languages),
-                returnNestedData(country.demonyms)
-            ].toString()
-                .toLowerCase()
-                .includes(searchValue));
-
         $('[data-country-cards]').innerHTML = "";
-        searchResults.forEach(result => renderCountryData(result));
+        searchResults.forEach(result => {
+            renderCountryData(result, 'card');
+        });
+
+        searchResults.length === 0 &&
+            renderCountryData(null, 'search404');
+
         isFiltering = true;
         isSearching = true;
     } else {
         isSearching ? isFiltering = true : isFiltering = false;
     }
+    clearSearchBar();
 }
 
-function returnNestedData(obj) {
+export function returnNestedData(obj) {
     let nestedData = [];
 
     for (const key in obj) {
