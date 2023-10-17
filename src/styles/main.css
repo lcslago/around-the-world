@@ -66,6 +66,14 @@ body {
     opacity: .2;
 }
 
+.scroll-btn {
+    border: none;
+}
+
+.arrow-up {
+    fill: #fff;
+}
+
 @media (max-width: 820px) {
     .search-bar {
         width: 100%;
@@ -118,23 +126,20 @@ body {
         background-color: hsl(207, 26%, 17%);
     }
 
-    .dropdown-item:hover {
+    .btn-search,
+    .dropdown-item:hover,
+    .scroll-btn {
         background-color: #205295;
     }
 
-    .dropdown-item:active {
+    .btn-search:hover,
+    .dropdown-item:active,
+    .scroll-btn:hover {
         background-color: #3163A6;
     }
 
-    .btn-search {
-        background-color: #205295;
-    }
-
-    .btn-search:hover {
-        background-color: #3163A6;
-    }
-
-    .btn-search:active {
+    .btn-search:active,
+    .scroll-btn:active {
         background-color: #4274B7;
     }
 
@@ -152,24 +157,21 @@ body {
             background-color: white;
         }
 
-        .dropdown-item:hover {
+        .btn-search,
+        .dropdown-item:hover,
+        .scroll-btn {
             background-color: #6496C9;
             color: white;
         }
 
-        .dropdown-item:active {
+        .btn-search:hover,
+        .dropdown-item:active,
+        .scroll-btn:hover {
             background-color: #5385B8;
         }
 
-        .btn-search {
-            background-color: #6496C9;
-        }
-
-        .btn-search:hover {
-            background-color: #5385B8;
-        }
-
-        .btn-search:active {
+        .btn-search:active,
+        .scroll-btn:active {
             background-color: #4274B7;
         }
     }
