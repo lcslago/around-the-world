@@ -1,4 +1,5 @@
-import { renderHomePage, renderScrollUpButton } from "./utils/renderHomePage.js";
+import { renderHomePage } from "./utils/renderHomePage.js";
+import { renderScrollUpButton } from "./utils/renderScrollUpButton.js";
 import { setTheme } from "./utils/setTheme.js";
 
 (() => {

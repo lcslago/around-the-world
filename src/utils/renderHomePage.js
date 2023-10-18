@@ -39,23 +39,6 @@ function showCountryData(arr, currentPosition, currentBatch) {
     }
 }
 
-export function renderScrollUpButton() {
-    window.addEventListener('scroll', () => {
-        const scrollUpButton = document.querySelector('[data-scroll-up]');
-
-        window.scrollY === 0 ?
-            scrollUpButton.hidden = true :
-            scrollUpButton.hidden = false;
-
-        scrollUpButton.addEventListener('click', () => {
-            window.scrollBy({
-                top: -window.innerHeight - 1000000,
-                behavior: "instant"
-            })
-        })
-    });
-}
-
 //algoritmo de ordernação aleatória fisher-yates 
 function shuffleCountryData(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
