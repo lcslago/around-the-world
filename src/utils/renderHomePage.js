@@ -1,6 +1,7 @@
 import { fetchCountryData } from "../api/fetchCountryData.js";
 import { renderCountryData } from "./../api/renderCountryData.js";
 import { filterCountryData, checkTheFilter } from "./../api/filterCountryData.js";
+import { sortCountryData } from "../api/sortCountryData.js";
 
 export async function renderHomePage() {
     const responseArr = await fetchCountryData();
@@ -11,6 +12,7 @@ export async function renderHomePage() {
     let currentBatch = cardsPerScroll;
     showCountryData(sortedData, currentPosition, currentBatch);
     filterCountryData(sortedData);
+    sortCountryData(sortedData);
 
     infinityScrolling(
         sortedData,

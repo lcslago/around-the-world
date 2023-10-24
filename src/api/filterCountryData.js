@@ -1,12 +1,12 @@
 import { renderCountryData } from "./renderCountryData.js";
+import { sortCountryData, sortOptions } from "./sortCountryData.js";
 
 const $ = document.querySelector.bind(document);
 const $All = document.querySelectorAll.bind(document);
 
-let isFiltering = false;
+export let isFiltering = false;
 
 export function filterCountryData(arr) {
-
     const numberOfContinents = 6;
     const countryRegions = [];
     const countryList = [];
@@ -37,9 +37,14 @@ export function filterCountryData(arr) {
             filteredCountryList
                 .forEach(country => renderCountryData(country, 'card'));
 
+            sortCountryData(filteredCountryList);
             isFiltering = true;
         })
     })
+
+    sortOptions.forEach(option => option
+        .addEventListener('click', () => isFiltering = true));
+
     searchCountryData(countryList);
 }
 
@@ -91,6 +96,7 @@ function startSearching(arr) {
         searchResults.forEach(result => {
             renderCountryData(result, 'card');
         });
+        sortCountryData(searchResults);
 
         searchResults.length === 0 &&
             renderCountryData(null, 'search404');
