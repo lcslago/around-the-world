@@ -7,7 +7,7 @@ export async function renderHomePage() {
     const responseArr = await fetchCountryData();
     const sortedData = shuffleCountryData(responseArr);
 
-    const cardsPerScroll = 16;
+    const cardsPerScroll = 8;
     let currentPosition = 0;
     let currentBatch = cardsPerScroll;
     showCountryData(sortedData, currentPosition, currentBatch);
