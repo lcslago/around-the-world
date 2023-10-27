@@ -1,8 +1,7 @@
+import { sortOptions } from "../utils/renderHomePage.js";
 import { renderCountryData } from "./renderCountryData.js";
 
 const bodyPage = document.querySelector('[data-country-cards]');
-export const sortOptions = document.querySelectorAll('[data-sort-option]');
-
 let optionsArr = [];
 
 export function sortCountryData(arr) {
@@ -12,7 +11,8 @@ export function sortCountryData(arr) {
 
     sortOptions.forEach((option, index) => {
         option.addEventListener('click', () => {
-            sort(arr, optionsArr[index]);
+            bodyPage.innerHTML = "";
+            renderResults(sort(arr, optionsArr[index]));
         });
     })
 }
@@ -25,24 +25,13 @@ function sort(countryData, type) {
 
     switch (type) {
         case nameAscending:
-            sortByName(countryData);
-            renderSortResults(countryData);
-            break;
-
+            return sortByName(countryData);
         case nameDescending:
-            sortByName(countryData).reverse();
-            renderSortResults(countryData);
-            break;
-
+            return sortByName(countryData).reverse();
         case mostPopulated:
-            sortByPopulation(countryData).reverse();
-            renderSortResults(countryData);
-            break;
-
+            return sortByPopulation(countryData).reverse();
         case leastPopulated:
-            sortByPopulation(countryData);
-            renderSortResults(countryData);
-            break;
+            return sortByPopulation(countryData);
     }
 }
 
@@ -61,9 +50,8 @@ function sortByPopulation(arr) {
     );
 }
 
-function renderSortResults(arr) {
-    bodyPage.innerHTML = "";
-    for (let i = 0; i < arr.length; i++) {
+function renderResults(arr) {
+    for (let i = 0; i < 8; i++) {
         renderCountryData(arr[i], 'card');
     }
 }

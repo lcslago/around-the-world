@@ -1,5 +1,5 @@
 import { renderCountryData } from "./renderCountryData.js";
-import { sortCountryData, sortOptions } from "./sortCountryData.js";
+import { sortCountryData } from "./sortCountryData.js";
 
 const $ = document.querySelector.bind(document);
 const $All = document.querySelectorAll.bind(document);
@@ -41,9 +41,6 @@ export function filterCountryData(arr) {
             isFiltering = true;
         })
     })
-
-    sortOptions.forEach(option => option
-        .addEventListener('click', () => isFiltering = true));
 
     searchCountryData(countryList);
 }

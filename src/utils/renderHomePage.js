@@ -1,36 +1,59 @@
-import { fetchCountryData } from "../api/fetchCountryData.js";
 import { renderCountryData } from "./../api/renderCountryData.js";
 import { filterCountryData, checkTheFilter } from "./../api/filterCountryData.js";
 import { sortCountryData } from "../api/sortCountryData.js";
 
-export async function renderHomePage() {
-    const responseArr = await fetchCountryData();
-    const sortedData = shuffleCountryData(responseArr);
+export const sortOptions = document.querySelectorAll('[data-sort-option]');
 
+export async function renderHomePage() {
+    let fetchWorker = new Worker('./src/api/fetchCountryData.js');
+    fetchWorker.postMessage('fetch');
+
+    fetchWorker.addEventListener('message', event => {
+        const scrollClojure = infinityScrolling(event.data);
+        scrollClojure.startInfinityScrolling();
+
+        sortOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                scrollClojure.resetScrolling();
+            })
+        })
+
+        filterCountryData(event.data);
+        sortCountryData(event.data);
+    })
+}
+
+const infinityScrolling = (arr) => {
     const cardsPerScroll = 8;
     let currentPosition = 0;
     let currentBatch = cardsPerScroll;
-    showCountryData(sortedData, currentPosition, currentBatch);
-    filterCountryData(sortedData);
-    sortCountryData(sortedData);
 
-    infinityScrolling(
-        sortedData,
+    const totalItems = arr.length;
+
+    showCountryData(
+        arr,
         currentPosition,
-        currentBatch,
-        cardsPerScroll);
-}
+        currentBatch);
 
-function infinityScrolling(arr, currentPosition, currentBatch, cardsPerScroll) {
-    window.addEventListener('scroll', () => {
-        if (!checkTheFilter()) {
-            if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 500) {
-                currentPosition = currentPosition += cardsPerScroll;
-                currentBatch = currentBatch += cardsPerScroll;
-                showCountryData(arr, currentPosition, currentBatch);
+    const startInfinityScrolling = () => {
+        window.addEventListener('scroll', () => {
+            if (!checkTheFilter() && currentPosition <= totalItems) {
+                if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 500) {
+                    currentPosition += cardsPerScroll;
+                    currentBatch += cardsPerScroll;
+                    showCountryData(arr, currentPosition, currentBatch);
+                    console.log(currentPosition);
+                }
             }
-        }
-    });
+        });
+    }
+
+    const resetScrolling = () => {
+        currentPosition = 0;
+        currentBatch = cardsPerScroll;
+    }
+
+    return { startInfinityScrolling, resetScrolling };
 }
 
 function showCountryData(arr, currentPosition, currentBatch) {
@@ -41,11 +64,4 @@ function showCountryData(arr, currentPosition, currentBatch) {
     }
 }
 
-//algoritmo de ordernação aleatória fisher-yates 
-function shuffleCountryData(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
+
