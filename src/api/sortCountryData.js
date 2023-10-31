@@ -12,7 +12,7 @@ export function sortCountryData(arr) {
     sortOptions.forEach((option, index) => {
         option.addEventListener('click', () => {
             bodyPage.innerHTML = "";
-            renderResults(sort(arr, optionsArr[index]));
+            renderResults(sort(arr, optionsArr[index]), 8);
         });
     })
 }
@@ -50,8 +50,8 @@ function sortByPopulation(arr) {
     );
 }
 
-function renderResults(arr) {
-    for (let i = 0; i < 8; i++) {
+export function renderResults(arr, cardsPerScroll) {
+    for (let i = 0; i < cardsPerScroll; i++) {
         renderCountryData(arr[i], 'card');
     }
 }

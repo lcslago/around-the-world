@@ -1,5 +1,5 @@
 import { renderCountryData } from "./../api/renderCountryData.js";
-import { filterCountryData, checkTheFilter } from "./../api/filterCountryData.js";
+import { checkTheFilter, filterCountryData, regionOptions, returnFilterData } from "./../api/filterCountryData.js";
 import { sortCountryData } from "../api/sortCountryData.js";
 
 export const sortOptions = document.querySelectorAll('[data-sort-option]');
@@ -9,12 +9,16 @@ export async function renderHomePage() {
     fetchWorker.postMessage('fetch');
 
     fetchWorker.addEventListener('message', event => {
-        const scrollClojure = infinityScrolling(event.data);
+        let scrollClojure;
+
+        scrollClojure = infinityScrolling(event.data);
         scrollClojure.startInfinityScrolling();
 
-        sortOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                scrollClojure.resetScrolling();
+        [sortOptions, regionOptions].forEach(list => {
+            list.forEach(option => {
+                option.addEventListener('click', () => {
+                    scrollClojure.resetScrolling();
+                })
             })
         })
 
@@ -28,7 +32,7 @@ const infinityScrolling = (arr) => {
     let currentPosition = 0;
     let currentBatch = cardsPerScroll;
 
-    const totalItems = arr.length;
+    let totalItems = arr.length;
 
     showCountryData(
         arr,
@@ -37,12 +41,15 @@ const infinityScrolling = (arr) => {
 
     const startInfinityScrolling = () => {
         window.addEventListener('scroll', () => {
-            if (!checkTheFilter() && currentPosition <= totalItems) {
+            if (currentPosition <= totalItems) {
                 if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 500) {
                     currentPosition += cardsPerScroll;
                     currentBatch += cardsPerScroll;
-                    showCountryData(arr, currentPosition, currentBatch);
-                    console.log(currentPosition);
+
+                    checkTheFilter() ?
+                        showCountryData(returnFilterData(), currentPosition, currentBatch) :
+                        showCountryData(arr, currentPosition, currentBatch);
+
                 }
             }
         });

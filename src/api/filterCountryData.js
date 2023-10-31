@@ -1,13 +1,15 @@
 import { renderCountryData } from "./renderCountryData.js";
-import { sortCountryData } from "./sortCountryData.js";
+import { renderResults, sortCountryData } from "./sortCountryData.js";
 
 const $ = document.querySelector.bind(document);
 const $All = document.querySelectorAll.bind(document);
 
 export let isFiltering = false;
+let filteredCountryList;
+let regionValue;
+export const regionOptions = $All('[data-region]')
 
 export function filterCountryData(arr) {
-    const numberOfContinents = 6;
     const countryRegions = [];
     const countryList = [];
 
@@ -17,31 +19,27 @@ export function filterCountryData(arr) {
     }
     const filteredCountryRegions =
         (() => countryRegions.filter((item, index) => countryRegions
-            .indexOf(item) === index).sort())()
+            .indexOf(item) === index).sort())();
 
-    for (let i = 0; i < numberOfContinents; i++) {
-        $('[data-regions]').appendChild(document.createElement("li"))
-            .innerHTML = `<button class="dropdown-item" data-region>
-                    ${filteredCountryRegions[i]}
-                </button>`
-    }
-
-    $All('[data-region]').forEach((region, index) => {
+    regionOptions.forEach((region, index) => {
         region.addEventListener('click', () => {
             $('[data-country-cards]').innerHTML = "";
+            regionValue = region.innerHTML;
 
-            const filteredCountryList = countryList
+            filteredCountryList = countryList
                 .filter((country) => country
                     .region === `${filteredCountryRegions[index]}`);
 
-            filteredCountryList
-                .forEach(country => renderCountryData(country, 'card'));
+            filteredCountryList.length < 8 ?
+                renderResults(filteredCountryList, filteredCountryList.length) :
+                renderResults(filteredCountryList, 8);
+
+            filteredCountryList.length === 0 && renderCountryData(null, 'filter404');
 
             sortCountryData(filteredCountryList);
             isFiltering = true;
         })
     })
-
     searchCountryData(countryList);
 }
 
@@ -94,6 +92,7 @@ function startSearching(arr) {
             renderCountryData(result, 'card');
         });
         sortCountryData(searchResults);
+        filterCountryData(searchResults);
 
         searchResults.length === 0 &&
             renderCountryData(null, 'search404');
@@ -120,3 +119,5 @@ export function returnNestedData(obj) {
 }
 
 export let checkTheFilter = () => isFiltering;
+export let returnFilterData = () => filteredCountryList;
+export let returnRegionValue = () => regionValue;
