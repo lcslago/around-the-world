@@ -1,11 +1,15 @@
+import { returnClojure } from "../utils/renderHomePage.js";
 import { renderCountryData } from "./renderCountryData.js";
 import { renderResults, sortCountryData } from "./sortCountryData.js";
 
 const $ = document.querySelector.bind(document);
 const $All = document.querySelectorAll.bind(document);
 
-export let isFiltering = false;
+let isFiltering = false;
+let isSearching = false;
+
 let filteredCountryList;
+let searchResults;
 let regionValue;
 export const regionOptions = $All('[data-region]')
 
@@ -30,11 +34,10 @@ export function filterCountryData(arr) {
                 .filter((country) => country
                     .region === `${filteredCountryRegions[index]}`);
 
-            filteredCountryList.length < 8 ?
-                renderResults(filteredCountryList, filteredCountryList.length) :
-                renderResults(filteredCountryList, 8);
+            renderFilteredResults(filteredCountryList);
 
-            filteredCountryList.length === 0 && renderCountryData(null, 'filter404');
+            filteredCountryList.length === 0 &&
+                renderCountryData(null, 'filter404');
 
             sortCountryData(filteredCountryList);
             isFiltering = true;
@@ -43,9 +46,16 @@ export function filterCountryData(arr) {
     searchCountryData(countryList);
 }
 
-const searchBar = $('[data-search]');
+function renderFilteredResults(data) {
+    data.length < 8 ?
+        renderResults(data, data.length) :
+        renderResults(data, 8);
+}
+
+export const searchBar = $('[data-search]');
+export const searchBtn = $('[data-search-btn]');
+
 function searchCountryData(arr) {
-    const searchBtn = $('[data-search-btn]');
     const searchInfo = $('[data-search-info]');
 
     searchBar.addEventListener('focus',
@@ -53,11 +63,14 @@ function searchCountryData(arr) {
     searchBar.addEventListener('blur',
         () => searchInfo.innerHTML = "");
 
-    searchBtn.addEventListener('click', () => startSearching(arr));
+    searchBtn.addEventListener('click', () => {
+        startSearching(arr);
+    });
     searchBar.addEventListener('keydown', (e) => {
         if (e.key === "Enter") {
             startSearching(arr);
             searchBar.blur();
+            returnClojure().resetScrolling();
         }
     })
 }
@@ -82,26 +95,25 @@ function returnSearchResults(arr, searchTerm) {
 
 function startSearching(arr) {
     const searchValue = searchBar.value.trim().toLowerCase();
-    let searchResults = returnSearchResults(arr, searchValue);
     const clearSearchBar = () => searchBar.value = "";
-    let isSearching = false;
+    searchResults = returnSearchResults(arr, searchValue);
 
     if (searchValue !== "") {
         $('[data-country-cards]').innerHTML = "";
-        searchResults.forEach(result => {
-            renderCountryData(result, 'card');
-        });
+        renderFilteredResults(searchResults);
+
+        returnClojure().updateSearchData(searchResults);
+
         sortCountryData(searchResults);
         filterCountryData(searchResults);
 
         searchResults.length === 0 &&
             renderCountryData(null, 'search404');
 
-        isFiltering = true;
         isSearching = true;
-    } else {
-        isSearching ? isFiltering = true : isFiltering = false;
+        isFiltering = false;
     }
+
     clearSearchBar();
 }
 
@@ -119,5 +131,7 @@ export function returnNestedData(obj) {
 }
 
 export let checkTheFilter = () => isFiltering;
+export let checkTheSearch = () => isSearching;
+
 export let returnFilterData = () => filteredCountryList;
 export let returnRegionValue = () => regionValue;

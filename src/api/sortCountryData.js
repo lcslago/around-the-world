@@ -11,8 +11,12 @@ export function sortCountryData(arr) {
 
     sortOptions.forEach((option, index) => {
         option.addEventListener('click', () => {
+            let dataSorted = sort(arr, optionsArr[index]);
             bodyPage.innerHTML = "";
-            renderResults(sort(arr, optionsArr[index]), 8);
+
+            dataSorted.length < 8 ?
+                renderResults(dataSorted, dataSorted.length) :
+                renderResults(dataSorted, 8);
         });
     })
 }
