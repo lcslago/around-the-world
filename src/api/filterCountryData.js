@@ -1,4 +1,4 @@
-import { returnClojure } from "../utils/renderHomePage.js";
+import { returnClojure, returnRegions } from "../utils/renderHomePage.js";
 import { renderCountryData } from "./renderCountryData.js";
 import { renderResults, sortCountryData } from "./sortCountryData.js";
 
@@ -14,16 +14,12 @@ let regionValue;
 export const regionOptions = $All('[data-region]')
 
 export function filterCountryData(arr) {
-    const countryRegions = [];
     const countryList = [];
+    const filteredCountryRegions = returnRegions();
 
     for (let i = 0; i < arr.length; i++) {
-        countryRegions.push(arr[i].region);
         countryList.push(arr[i]);
     }
-    const filteredCountryRegions =
-        (() => countryRegions.filter((item, index) => countryRegions
-            .indexOf(item) === index).sort())();
 
     regionOptions.forEach((region, index) => {
         region.addEventListener('click', () => {
@@ -44,6 +40,21 @@ export function filterCountryData(arr) {
         })
     })
     searchCountryData(countryList);
+}
+
+export function getRegions(arr) {
+    const countryRegions = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        countryRegions.push(arr[i].region);
+    }
+
+    const filteredCountryRegions =
+        (() => countryRegions
+            .filter((item, index) => countryRegions
+                .indexOf(item) === index).sort())();
+
+    return filteredCountryRegions;
 }
 
 function renderFilteredResults(data) {

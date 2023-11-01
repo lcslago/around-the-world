@@ -1,10 +1,11 @@
 import { renderCountryData } from "./../api/renderCountryData.js";
-import { checkTheFilter, checkTheSearch, filterCountryData, regionOptions, returnFilterData } from "./../api/filterCountryData.js";
+import { checkTheFilter, checkTheSearch, filterCountryData, getRegions, regionOptions, returnFilterData } from "./../api/filterCountryData.js";
 import { sortCountryData } from "../api/sortCountryData.js";
 
 export const sortOptions = document.querySelectorAll('[data-sort-option]');
 
 let scrollClojure;
+let countryRegionList;
 export async function renderHomePage() {
     let fetchWorker = new Worker('./src/api/fetchCountryData.js');
     fetchWorker.postMessage('fetch');
@@ -22,11 +23,13 @@ export async function renderHomePage() {
             })
         })
 
+        countryRegionList = getRegions(event.data);
         filterCountryData(event.data);
         sortCountryData(event.data);
     })
 }
 
+export let returnRegions = () => countryRegionList;
 export let returnClojure = () => scrollClojure;
 
 const infinityScrolling = (arr) => {
