@@ -34,10 +34,11 @@
         </nav>
     </header>
     <main class="main w-100 min-vh-100" data-body-main>
-        <div class="d-flex flex-column flex-md-row gap-3 gap-md-5 w-100 py-4 py-md-5 container">
+        <div class="d-flex flex-column flex-lg-row gap-3 gap-lg-5 w-100 py-4 py-md-5 container">
 
-            <section id="searchBar" class="d-flex flex-column gap-2 w-100" style="height: 80px;">
-                <label for="search" class="d-flex align-items-center form-control shadow-sm border-0 gap-3 search-bar"
+            <section id="searchBar" class="d-flex flex-column gap-2 w-100 col" style="height: 80px;">
+                <label for="search"
+                    class="d-flex align-items-center w-100 form-control shadow-sm border-0 gap-3 search-bar"
                     style="height: 50px;">
 
                     <input type="search" placeholder="Search for a country..." name="" id="search"
@@ -60,7 +61,12 @@
                 <!-- <button>teste</button> -->
             </section>
 
-            <section id="filters" class="d-flex flex-row-reverse gap-4 justify-content-end">
+            <div class="col-lg-1">
+
+            </div>
+
+            <section id="filters"
+                class="d-flex flex-row-reverse gap-4 justify-content-center justify-content-lg-start col">
                 <div id="sorter" class="dropdown shadow-sm rounded border-0 dropdown-container" style="width: 12rem;">
                     <a href=""
                         class="dropdown-toggle d-flex align-items-center justify-content-between text-reset text-decoration-none p-3 rounded user-select-none"
