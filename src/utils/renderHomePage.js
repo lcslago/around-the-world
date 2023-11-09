@@ -1,8 +1,18 @@
 import { renderCountryData } from "./../api/renderCountryData.js";
-import { checkTheFilter, checkTheSearch, filterCountryData, getRegions, regionOptions, returnFilterData } from "./../api/filterCountryData.js";
+
+import {
+    checkTheFilter,
+    checkTheSearch,
+    filterCountryData,
+    getRegions,
+    regionOptions,
+    returnFilterData
+} from "./../api/filterCountryData.js";
+
 import { sortCountryData } from "../api/sortCountryData.js";
 
 export const sortOptions = document.querySelectorAll('[data-sort-option]');
+export let cardsPerScroll = setCardPerScroll();
 
 let scrollClojure;
 let countryRegionList;
@@ -33,7 +43,6 @@ export let returnRegions = () => countryRegionList;
 export let returnClojure = () => scrollClojure;
 
 const infinityScrolling = (arr) => {
-    const cardsPerScroll = 8;
     let currentPosition = 0;
     let currentBatch = cardsPerScroll;
 
@@ -85,4 +94,16 @@ function showCountryData(arr, currentPosition, currentBatch) {
     }
 }
 
+function setCardPerScroll() {
+    const desktopWidth = 1440;
+    const tabletWidth = 768;
+    const mobileWidth = 320;
 
+    if (window.innerWidth >= mobileWidth && window.innerWidth < tabletWidth) {
+        return 2;
+    } else if (window.innerWidth >= tabletWidth && window.innerWidth < desktopWidth) {
+        return 8;
+    } else if (window.innerWidth >= desktopWidth) {
+        return 20;
+    }
+}

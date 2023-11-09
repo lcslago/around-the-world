@@ -1,4 +1,4 @@
-import { returnClojure, returnRegions } from "../utils/renderHomePage.js";
+import { cardsPerScroll, returnClojure, returnRegions } from "../utils/renderHomePage.js";
 import { renderCountryData } from "./renderCountryData.js";
 import { renderResults, sortCountryData } from "./sortCountryData.js";
 
@@ -60,7 +60,7 @@ export function getRegions(arr) {
 function renderFilteredResults(data) {
     data.length < 8 ?
         renderResults(data, data.length) :
-        renderResults(data, 8);
+        renderResults(data, cardsPerScroll);
 }
 
 export const searchBar = $('[data-search]');

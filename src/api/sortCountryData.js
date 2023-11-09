@@ -1,4 +1,4 @@
-import { sortOptions } from "../utils/renderHomePage.js";
+import { cardsPerScroll, sortOptions } from "../utils/renderHomePage.js";
 import { filterCountryData } from "./filterCountryData.js";
 import { renderCountryData } from "./renderCountryData.js";
 
@@ -17,7 +17,7 @@ export function sortCountryData(arr) {
 
             dataSorted.length < 8 ?
                 renderResults(dataSorted, dataSorted.length) :
-                renderResults(dataSorted, 8);
+                renderResults(dataSorted, cardsPerScroll);
 
             filterCountryData(dataSorted);
         });
