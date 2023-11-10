@@ -1,9 +1,10 @@
 import { cardsPerScroll, returnClojure, returnRegions } from "../utils/renderHomePage.js";
 import { renderCountryData } from "./renderCountryData.js";
-import { renderResults, sortCountryData } from "./sortCountryData.js";
+import { renderResults, sortCountryData, sortLabel } from "./sortCountryData.js";
 
 const $ = document.querySelector.bind(document);
 const $All = document.querySelectorAll.bind(document);
+const filterLabel = document.getElementById('filterLabel');
 
 let isFiltering = false;
 let isSearching = false;
@@ -25,6 +26,7 @@ export function filterCountryData(arr) {
         region.addEventListener('click', () => {
             $('[data-country-cards]').innerHTML = "";
             regionValue = region.innerHTML;
+            filterLabel.innerHTML = `<b>${region.innerHTML}</b>`;
 
             filteredCountryList = countryList
                 .filter((country) => country
@@ -107,6 +109,8 @@ function returnSearchResults(arr, searchTerm) {
 function startSearching(arr) {
     const searchValue = searchBar.value.trim().toLowerCase();
     const clearSearchBar = () => searchBar.value = "";
+    sortLabel.innerHTML = "Sort by";
+    filterLabel.innerHTML = "Filter by Region";
     searchResults = returnSearchResults(arr, searchValue);
 
     if (searchValue !== "") {
