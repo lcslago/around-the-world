@@ -47,7 +47,7 @@ function sort(countryData, type) {
     }
 }
 
-function sortByName(arr) {
+export function sortByName(arr) {
     return arr.sort((a, b) =>
         a.name.common
             .localeCompare(

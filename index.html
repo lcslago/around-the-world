@@ -23,7 +23,7 @@
         <nav class="container navbar pt-4 pb-4">
             <div class="container-fluid d-flex flex-column flex-md-row gap-md-0 gap-2 align-items-center">
                 <nav class="navbar-brand m-0 p-0">
-                    <a class="navbar-brand m-0 p-0 fs-3 fw-bold nunito-bolder" href="./index.html">
+                    <a class="navbar-brand m-0 p-0 fs-3 fw-bold nunito-bolder" href="./">
                         Where in the world?
                     </a>
                 </nav>
@@ -34,84 +34,90 @@
         </nav>
     </header>
     <main class="main w-100 min-vh-100" data-body-main>
-        <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-5 w-100 py-4 py-md-5 container">
+        <div data-main-child>
+            <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-5 w-100 py-4 py-md-5 container"
+                data-filter-container>
 
-            <section id="searchBar" class="d-flex flex-column gap-2 w-100 col" style="height: 80px;">
-                <label for="search"
-                    class="d-flex align-items-center w-100 form-control shadow-sm border-0 gap-3 search-bar"
-                    style="height: 50px;">
+                <section id="searchBar" class="d-flex flex-column gap-2 w-100 col" style="height: 80px;">
+                    <label for="search"
+                        class="d-flex align-items-center w-100 form-control shadow-sm border-0 gap-3 search-bar"
+                        style="height: 50px;">
 
-                    <input type="search" placeholder="Search for a country..." name="" id="search"
-                        class="border-0 form-control w-100" list="countryOptions" autocomplete="off" data-search>
-                    <datalist id="countryOptions" data-datalist>
+                        <input type="search" placeholder="Search for a country..." name="" id="search"
+                            class="border-0 form-control w-100" list="countryOptions" autocomplete="off" data-search>
+                        <datalist id="countryOptions" data-datalist>
 
-                    </datalist>
+                        </datalist>
 
-                    <button class="btn-search rounded" title="Search" data-search-btn>
-                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26"
-                            height="26" data-search-icon>
-                            <path
-                                d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z">
-                            </path>
-                        </svg>
-                    </button>
-                </label>
-                <span class="container text-body-tertiary nunito-bolder" style="font-size: .85rem;"
-                    data-search-info></span>
-            </section>
+                        <button class="btn-search rounded" title="Search" data-search-btn>
+                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26"
+                                height="26" data-search-icon>
+                                <path
+                                    d="M10.25 2a8.25 8.25 0 0 1 6.34 13.53l5.69 5.69a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-5.69-5.69A8.25 8.25 0 1 1 10.25 2ZM3.5 10.25a6.75 6.75 0 1 0 13.5 0 6.75 6.75 0 0 0-13.5 0Z">
+                                </path>
+                            </svg>
+                        </button>
+                    </label>
+                    <span class="container text-body-tertiary nunito-bolder" style="font-size: .85rem;"
+                        data-search-info></span>
+                </section>
 
-            <div class="col-lg-1">
+                <div class="col-lg-1">
 
+                </div>
+
+                <section id="filters"
+                    class="d-flex flex-row-reverse gap-4 justify-content-center justify-content-lg-start col">
+                    <div id="sorter" class="dropdown shadow-sm rounded border-0 dropdown-container"
+                        style="width: 12rem;">
+                        <a href=""
+                            class="dropdown-toggle d-flex align-items-center justify-content-between text-reset text-decoration-none p-3 rounded user-select-none"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 50px;"
+                            data-dropdown id="sortLabel">
+                            Sort by
+                        </a>
+
+                        <ul class="dropdown-menu w-100 shadow-sm border-0">
+                            <button class="dropdown-item text-wrap" data-sort-option>Name (Ascending)</button>
+                            <button class="dropdown-item text-wrap" data-sort-option>Name (Descending)</button>
+                            <button class="dropdown-item text-wrap" data-sort-option>Most Populated</button>
+                            <button class="dropdown-item text-wrap" data-sort-option>Least Populated</button>
+                        </ul>
+                    </div>
+
+                    <div id="filter" class="dropdown shadow-sm rounded border-0 dropdown-container"
+                        style="width: 12rem;">
+                        <a href=""
+                            class="dropdown-toggle d-flex align-items-center justify-content-between text-reset text-decoration-none p-3 rounded user-select-none"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 50px;"
+                            data-dropdown id="filterLabel">
+                            Filter by Region
+                        </a>
+
+                        <ul class="dropdown-menu w-100 shadow-sm border-0" data-regions>
+                            <button class="dropdown-item" data-region>Africa</button>
+                            <button class="dropdown-item" data-region>Americas</button>
+                            <button class="dropdown-item" data-region>Antarctic</button>
+                            <button class="dropdown-item" data-region>Asia</button>
+                            <button class="dropdown-item" data-region>Europe</button>
+                            <button class="dropdown-item" data-region>Oceania</button>
+                        </ul>
+                    </div>
+                </section>
             </div>
 
-            <section id="filters"
-                class="d-flex flex-row-reverse gap-4 justify-content-center justify-content-lg-start col">
-                <div id="sorter" class="dropdown shadow-sm rounded border-0 dropdown-container" style="width: 12rem;">
-                    <a href=""
-                        class="dropdown-toggle d-flex align-items-center justify-content-between text-reset text-decoration-none p-3 rounded user-select-none"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 50px;"
-                        data-dropdown id="sortLabel">
-                        Sort by
-                    </a>
-
-                    <ul class="dropdown-menu w-100 shadow-sm border-0">
-                        <button class="dropdown-item text-wrap" data-sort-option>Name (Ascending)</button>
-                        <button class="dropdown-item text-wrap" data-sort-option>Name (Descending)</button>
-                        <button class="dropdown-item text-wrap" data-sort-option>Most Populated</button>
-                        <button class="dropdown-item text-wrap" data-sort-option>Least Populated</button>
-                    </ul>
-                </div>
-
-                <div id="filter" class="dropdown shadow-sm rounded border-0 dropdown-container" style="width: 12rem;">
-                    <a href=""
-                        class="dropdown-toggle d-flex align-items-center justify-content-between text-reset text-decoration-none p-3 rounded user-select-none"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false" style="height: 50px;"
-                        data-dropdown id="filterLabel">
-                        Filter by Region
-                    </a>
-
-                    <ul class="dropdown-menu w-100 shadow-sm border-0" data-regions>
-                        <button class="dropdown-item" data-region>Africa</button>
-                        <button class="dropdown-item" data-region>Americas</button>
-                        <button class="dropdown-item" data-region>Antarctic</button>
-                        <button class="dropdown-item" data-region>Asia</button>
-                        <button class="dropdown-item" data-region>Europe</button>
-                        <button class="dropdown-item" data-region>Oceania</button>
-                    </ul>
-                </div>
+            <section id="countryCards" class="d-flex flex-wrap gap-5 justify-content-center container"
+                data-country-cards>
             </section>
-        </div>
-
-        <section id="countryCards" class="d-flex flex-wrap gap-5 justify-content-center container" data-country-cards>
-        </section>
-        <div class="position-fixed bottom-0 end-0 mb-5 me-4 z-3" data-scroll-up hidden>
-            <button class="scroll-btn rounded-5 p-3 shadow">
-                <svg class="arrow-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="25">
-                    <path
-                        d="M3.47 7.78a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0l4.25 4.25a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018L9 4.81v7.44a.75.75 0 0 1-1.5 0V4.81L4.53 7.78a.75.75 0 0 1-1.06 0Z">
-                    </path>
-                </svg>
-            </button>
+            <div class="position-fixed bottom-0 end-0 mb-5 me-4 z-3" data-scroll-up hidden>
+                <button class="scroll-btn rounded-5 p-3 shadow">
+                    <svg class="arrow-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="25" height="25">
+                        <path
+                            d="M3.47 7.78a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0l4.25 4.25a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018L9 4.81v7.44a.75.75 0 0 1-1.5 0V4.81L4.53 7.78a.75.75 0 0 1-1.06 0Z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </main>
     <footer></footer>

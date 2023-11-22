@@ -132,10 +132,12 @@ function startSearching(arr) {
     clearSearchBar();
 }
 
-export function returnNestedData(obj) {
+export function returnNestedData(obj, func) {
     let nestedData = [];
 
     for (const key in obj) {
+        func && func(obj[key]);
+
         if (typeof obj[key] === 'object') {
             nestedData = nestedData.concat(returnNestedData(obj[key]));
         } else {

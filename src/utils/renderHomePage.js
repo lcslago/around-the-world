@@ -10,35 +10,40 @@ import {
 } from "./../api/filterCountryData.js";
 
 import { sortCountryData } from "../api/sortCountryData.js";
+import { renderOffcanvas } from "./renderOffcanvas.js";
 
 export const sortOptions = document.querySelectorAll('[data-sort-option]');
 export let cardsPerScroll = setCardPerScroll();
 
 let scrollClojure;
 let countryRegionList;
-export async function renderHomePage() {
-    let fetchWorker = new Worker('./src/api/fetchCountryData.js');
-    fetchWorker.postMessage('fetch');
+let dataFetched;
 
-    fetchWorker.addEventListener('message', event => {
-
-        scrollClojure = infinityScrolling(event.data);
-        scrollClojure.startInfinityScrolling();
-
-        [sortOptions, regionOptions].forEach(list => {
-            list.forEach(option => {
-                option.addEventListener('click', () => {
-                    scrollClojure.resetScrolling();
-                })
-            })
-        })
-
-        countryRegionList = getRegions(event.data);
-        filterCountryData(event.data);
-        sortCountryData(event.data);
+export function workerEventHandler(worker) {
+    worker.addEventListener('message', event => {
+        dataFetched = event.data;
+        renderHomePage(dataFetched);
     })
 }
 
+export function renderHomePage(data) {
+    scrollClojure = infinityScrolling(data);
+    scrollClojure.startInfinityScrolling();
+
+    [sortOptions, regionOptions].forEach(list => {
+        list.forEach(option => {
+            option.addEventListener('click', () => {
+                scrollClojure.resetScrolling();
+            })
+        })
+    })
+
+    countryRegionList = getRegions(data);
+    filterCountryData(data);
+    sortCountryData(data);
+}
+
+export let returnDataFetched = () => dataFetched;
 export let returnRegions = () => countryRegionList;
 export let returnClojure = () => scrollClojure;
 
@@ -92,6 +97,7 @@ function showCountryData(arr, currentPosition, currentBatch) {
     for (let index = currentPosition; index < maxIndex; index++) {
         renderCountryData(arr[index], 'card');
     }
+    renderOffcanvas(arr, 'card');
 }
 
 function setCardPerScroll() {

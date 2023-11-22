@@ -17,12 +17,12 @@ export function renderCountryData(data, type) {
 
             bodyPage.appendChild(document.createElement("div"))
                 .innerHTML = `
-                        <a href="#" class="text-decoration-none">
+                        <a href="/#/${countryName.toLowerCase().replaceAll(" ", "-")}" class="text-decoration-none" role="button" data-bs-toggle="offcanvas" data-bs-target="#countryOffcanvas" aria-controls="countryOffcanvas" data-card>
                             <div class="card country-card shadow border-0 col-sm-6 card-container">
                                 <div class="card-img-top shadow-sm fi fi-${countryFlag} country-flag">
                                 </div>
                                 <div class="d-flex flex-column card-body">
-                                    <span class="card-title nunito-bolder mb-3">
+                                    <span class="card-title nunito-bolder mb-3" data-card-title>
                                         ${countryName}
                                     </span>
                                     <span class="card-text">
@@ -40,14 +40,20 @@ export function renderCountryData(data, type) {
                                 </div>
                             </div>
                         </a>
+
+                        <div class="offcanvas offcanvas-end container" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
+                        </div>
                     `
+
+
+
             break;
 
         case 'search404':
             const divElement = bodyPage.appendChild(document.createElement("div"));
             divElement.classList.add("w-100");
             divElement.innerHTML = `
-                        <div class="d-flex justify-content-left gap-lg-5 search-404">
+                    < div class="d-flex justify-content-left gap-lg-5 search-404" >
                             <img src='./src/assets/img/search-off.svg' alt="Result not found" class="search-off-icon"/>
                             <div class="container d-flex flex-column justify-content-center">
                                 <h2 class="nunito-bolder">Result not found</h2>
@@ -57,7 +63,7 @@ export function renderCountryData(data, type) {
                                     Please, make sure all words are spelled correctly.
                                 </p>
                             </div>
-                        </div>
+                        </div >
                     `
             break;
 
@@ -65,7 +71,7 @@ export function renderCountryData(data, type) {
             const filterDivElement = bodyPage.appendChild(document.createElement("div"));
             filterDivElement.classList.add("w-100");
             filterDivElement.innerHTML = `
-                        <div class="d-flex justify-content-left gap-lg-5 search-404">
+                    < div class="d-flex justify-content-left gap-lg-5 search-404" >
                             <img src='./src/assets/img/search-off.svg' alt="Result not found" class="search-off-icon"/>
                             <div class="container d-flex flex-column justify-content-center">
                                 <h2 class="nunito-bolder">Country not found</h2>
@@ -74,7 +80,7 @@ export function renderCountryData(data, type) {
                                     There was no country from <strong>${returnRegionValue()}</strong> in your search results.
                                 </p>
                             </div>
-                        </div>
+                        </div >
                     `
             break;
     }
