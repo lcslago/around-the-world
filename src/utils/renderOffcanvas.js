@@ -36,7 +36,9 @@ export function renderOffcanvas(data, context) {
             const countryTimezone = data[index].timezones;
 
             const countryBorders = data[index].borders;
-            const sortedBorders = countryBorders.sort((a, b) => a.localeCompare(b));
+
+            const sortedBorders = countryBorders === undefined ?
+                [] : countryBorders.sort((a, b) => a.localeCompare(b));
 
             const getBorderFlag = (border) =>
                 getBordersData(returnDataFetched(), border)
@@ -144,10 +146,11 @@ export function renderOffcanvas(data, context) {
                     .filter(country => countryBorders
                         .some(border => country.cca3.includes(border)));
 
-            // const newDataSorted = newData.sort((a, b) => a.cca3.localeCompare(b.cca3));
+            const newDataSorted = !isUndefined(countryBorders) &&
+                newData.sort((a, b) => a.cca3.localeCompare(b.cca3));
             // console.log(newDataSorted);
 
-            renderOffcanvas(newData, 'offcanvas');
+            renderOffcanvas(newDataSorted, 'offcanvas');
         })
     })
 }
