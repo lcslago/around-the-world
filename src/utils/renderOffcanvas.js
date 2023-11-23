@@ -59,7 +59,7 @@ export function renderOffcanvas(data, context) {
 
             offcanvas.innerHTML = "";
             offcanvas.innerHTML = ` 
-                        <div class="offcanvas-header py-2">
+                        <div class="offcanvas-header py-2 shadow-sm position-relative">
                                 <div class="d-flex align-items-center gap-2">
                                     <h5 class="offcanvas-title fw-bold nunito-bolder fs-2" id="countryLabel">
                                         ${countryName}
@@ -69,14 +69,13 @@ export function renderOffcanvas(data, context) {
                         </div>
                         
                         <div class="offcanvas-body p-0 h-50">
-                                <div class="d-flex align-items-start w-100" style="height: 60%;">
+                                <div class="d-flex align-items-start w-100 gap-2 pt-3 py-2 container" style="height: 60%;">
 
-                                    <div class="d-flex w-100 h-100 gap-3 pb-3">
-                                        <div class="w-100 fi fi-${countryFlag}"></div>
-
+                                    <div class="d-flex w-75 h-100 gap-3 pb-3">
+                                        <div class=" fi fi-${countryFlag} shadow" style="width: 97.5%;"></div>
                                     </div>
                                     
-                                    <div class="w-50 h-100">
+                                    <div class="w-50 overflow-auto country-info p-1 ps-3 pe-3 rounded shadow" style="height: 95%;">
                                         <ul class="list-unstyled w-100">
                                             <li class="py-1">
                                                 <b>${multipleData(filteredNativeNames) ? "Native Names" : "Native Name"}:</b>
@@ -97,10 +96,7 @@ export function renderOffcanvas(data, context) {
                                                 </b>
                                              ${isUndefined(countryCapital) ? "" : countryCapital.join(', ')}
                                              </li>
-                                        </ul>
-
-                                        <ul class="list-unstyled w-100">
-                                            <li class="py-1"><b>
+                                             <li class="py-1"><b>
                                                 ${multipleData(countryDomain) ? "Top Level Domains" : "Top Level Domain"}:
                                             </b>
                                                 ${isUndefined(countryDomain) ? "" : countryDomain.join(', ')}
@@ -111,23 +107,24 @@ export function renderOffcanvas(data, context) {
                                                 ${isUndefined(countryCurrency) ? "" : countryCurrency.join(', ')}
                                             </li>
                                             <li class="py-1"><b>
-                                                ${multipleData(countryTimezone) ? "Timezones" : "Timezone"}: 
-                                            </b>
-                                                ${isUndefined(countryTimezone) ? "" : countryTimezone.join(', ')}
-                                            </li>
-                                            <li class="py-1"><b>
                                                 ${multipleData(countryLanguage) ? "Languages" : "Language"}: 
                                             </b>
                                                 ${countryLanguage.join(', ')}
                                             </li>
-                                        </ul>    
+                                            <li class="py-1"><b>
+                                                ${multipleData(countryTimezone) ? "Timezones" : "Timezone"}: 
+                                            </b>
+                                                ${isUndefined(countryTimezone) ? "" : countryTimezone.join(', ')}
+                                            </li>
+                                        </ul>
+                                            
                                     </div>
                                 </div>
                                 <div class="px-3 container d-flex align-items-start h-25 w-100 align-items-start gap-2">
-                                    <div class="d-flex gap-2 flex-wrap" style="width: 65%;">
-                                    <p class="m-0 fs-5 p-1"><b>Border Countries:</b></p>
+                                    <div class="d-flex gap-2 flex-wrap" style="width: 100%;">
+                                    <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
                                         ${isUndefined(sortedBorders) ? "" : sortedBorders.map(border => `
-                                        <div class="btn d-flex gap-1 align-items-center px-1 w-auto"
+                                        <div class="btn d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
                                         data-country-borders>
                                             <div
                                                 href="#" 

@@ -131,11 +131,16 @@ body {
     .country-card,
     .form-control,
     .dropdown-container,
-    .dropdown-menu {
+    .dropdown-menu,
+    .offcanvas-header,
+    .offcanvas-btn,
+    .offcanvas-btn:active,
+    .country-info {
         background-color: hsl(209, 23%, 22%);
     }
 
-    .main {
+    .main,
+    .offcanvas-body {
         background-color: hsl(207, 26%, 17%);
     }
 
@@ -163,10 +168,13 @@ body {
 
 [data-bs-theme="light"] {
 
-    .main {
+    .main,
+    .offcanvas-body {
         background-color: #F1EFEF;
 
-        .dropdown-container {
+        .dropdown-container,
+        .country-info,
+        .offcanvas-btn {
             background-color: white;
         }
 

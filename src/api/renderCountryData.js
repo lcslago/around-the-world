@@ -41,7 +41,7 @@ export function renderCountryData(data, type) {
                             </div>
                         </a>
 
-                        <div class="offcanvas offcanvas-end container" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
                         </div>
                     `
 
