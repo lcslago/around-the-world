@@ -1,4 +1,5 @@
 import { cardsPerScroll, sortOptions } from "../utils/renderHomePage.js";
+import { renderOffcanvas } from "../utils/renderOffcanvas.js";
 import { filterCountryData } from "./filterCountryData.js";
 import { renderCountryData } from "./renderCountryData.js";
 
@@ -66,4 +67,5 @@ export function renderResults(arr, cardsPerScroll) {
     for (let i = 0; i < cardsPerScroll; i++) {
         renderCountryData(arr[i], 'card');
     }
+    renderOffcanvas(arr, 'card');
 }
