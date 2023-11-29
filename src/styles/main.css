@@ -83,6 +83,15 @@ body {
     opacity: .7 !important;
 }
 
+.invisible-block {
+    display: none;
+}
+
+.flag-info {
+    width: 50%;
+    height: 95%;
+}
+
 @media (max-width: 820px) {
     .search-bar {
         width: 100%;
@@ -122,6 +131,54 @@ body {
 
     .offcanvas {
         --bs-offcanvas-width: 100vw;
+    }
+
+    .offcanvas-title {
+        font-size: 2.3rem !important;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 1300px) {
+    .flag-info {
+        width: 40%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .invisible-block {
+        display: block;
+    }
+
+    .offcanvas-title--container {
+        justify-content: center;
+    }
+
+    .offcanvas-info {
+        flex-direction: column;
+        height: auto !important;
+
+        .flag {
+            width: 100% !important;
+            height: 300px;
+        }
+
+        .flag-info {
+            width: 100%;
+            height: fit-content;
+            overflow: hidden !important;
+        }
+    }
+
+    .borders {
+        height: fit-content !important;
+        margin: 1rem auto 2rem auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .flag {
+        height: 290px !important;
+        margin-bottom: .5rem;
     }
 }
 

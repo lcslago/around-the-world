@@ -60,7 +60,8 @@ export function renderOffcanvas(data, context) {
             offcanvas.innerHTML = "";
             offcanvas.innerHTML = ` 
                         <div class="offcanvas-header py-2 shadow-sm position-relative">
-                                <div class="d-flex align-items-center gap-2">
+                                <div class="invisible-block btn-close opacity-0"></div>
+                                <div class="offcanvas-title--container d-flex w-100 align-items-center gap-2">
                                     <h5 class="offcanvas-title fw-bold nunito-bolder fs-2" id="countryLabel">
                                         ${countryName}
                                     </h5>
@@ -69,13 +70,13 @@ export function renderOffcanvas(data, context) {
                         </div>
                         
                         <div class="offcanvas-body p-0 h-50">
-                                <div class="d-flex align-items-start w-100 gap-2 pt-3 py-2 container" style="height: 60%;">
+                                <div class="offcanvas-info d-flex align-items-start w-100 gap-0 pt-3 py-2 container" style="height: 60%;">
 
-                                    <div class="d-flex w-75 h-100 gap-3 pb-3">
-                                        <div class=" fi fi-${countryFlag} shadow" style="width: 97.5%;"></div>
+                                    <div class="flag d-flex h-100 pb-3" style="width: 60%;">
+                                        <div class="flag fi fi-${countryFlag}" style="width: 97.5%;"></div>
                                     </div>
                                     
-                                    <div class="w-50 overflow-auto country-info p-1 ps-3 pe-3 rounded shadow" style="height: 95%;">
+                                    <div class="flag-info overflow-auto country-info p-1 ps-3 pe-3 rounded shadow">
                                         <ul class="list-unstyled w-100">
                                             <li class="py-1">
                                                 <b>${multipleData(filteredNativeNames) ? "Native Names" : "Native Name"}:</b>
@@ -120,7 +121,7 @@ export function renderOffcanvas(data, context) {
                                             
                                     </div>
                                 </div>
-                                <div class="px-3 container d-flex align-items-start h-25 w-100 align-items-start gap-2">
+                                <div class="borders px-3 container d-flex align-items-start h-25 w-100 align-items-start gap-2">
                                     <div class="d-flex gap-2 flex-wrap" style="width: 100%;">
                                     <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
                                         ${isUndefined(sortedBorders) ? "" : sortedBorders.map(border => `

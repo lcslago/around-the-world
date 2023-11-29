@@ -53,7 +53,7 @@ export function renderCountryData(data, type) {
             const divElement = bodyPage.appendChild(document.createElement("div"));
             divElement.classList.add("w-100");
             divElement.innerHTML = `
-                    < div class="d-flex justify-content-left gap-lg-5 search-404" >
+                    <div class="d-flex justify-content-left gap-lg-5 search-404">
                             <img src='./src/assets/img/search-off.svg' alt="Result not found" class="search-off-icon"/>
                             <div class="container d-flex flex-column justify-content-center">
                                 <h2 class="nunito-bolder">Result not found</h2>
@@ -63,7 +63,7 @@ export function renderCountryData(data, type) {
                                     Please, make sure all words are spelled correctly.
                                 </p>
                             </div>
-                        </div >
+                    </div>
                     `
             break;
 
