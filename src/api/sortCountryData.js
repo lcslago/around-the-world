@@ -5,11 +5,12 @@ import { renderCountryData } from "./renderCountryData.js";
 
 const bodyPage = document.querySelector('[data-country-cards]');
 export const sortLabel = document.getElementById('sortLabel');
+const $ = document.querySelector.bind(document);
 let optionsArr = [];
 
 export function sortCountryData(arr) {
     for (let i = 0; i < sortOptions.length; i++) {
-        optionsArr.push(sortOptions[i].innerText);
+        optionsArr.push(sortOptions[i].innerHTML);
     }
 
     sortOptions.forEach((option, index) => {
@@ -34,16 +35,16 @@ function sort(countryData, type) {
 
     switch (type) {
         case nameAscending:
-            sortLabel.innerHTML = `<b>${nameAscending}</b>`;
+            $('[data-sort-label]').innerHTML = `<b>${nameAscending}</b>`;
             return sortByName(countryData);
         case nameDescending:
-            sortLabel.innerHTML = `<b>${nameDescending}</b>`;
+            $('[data-sort-label]').innerHTML = `<b>${nameDescending}</b>`;
             return sortByName(countryData).reverse();
         case mostPopulated:
-            sortLabel.innerHTML = `<b>${mostPopulated}</b>`;
+            $('[data-sort-label]').innerHTML = `<b>${mostPopulated}</b>`;
             return sortByPopulation(countryData).reverse();
         case leastPopulated:
-            sortLabel.innerHTML = `<b>${leastPopulated}</b>`;
+            $('[data-sort-label]').innerHTML = `<b>${leastPopulated}</b>`;
             return sortByPopulation(countryData);
     }
 }
