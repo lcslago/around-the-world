@@ -125,7 +125,7 @@ export function renderOffcanvas(data, context) {
                                     <div class="d-flex gap-2 flex-wrap" style="width: 100%;">
                                     <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
                                         ${isUndefined(sortedBorders) ? "" : sortedBorders.map(border => `
-                                        <div class="btn d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
+                                        <div class="btn border-btn d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
                                         data-country-borders>
                                             <div
                                                 href="#" 

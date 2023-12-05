@@ -43,6 +43,12 @@ body {
     height: 22rem;
 }
 
+.card-container:hover,
+.card-container:active {
+    transform: scale(110%);
+    transition: .2s;
+}
+
 .country-flag {
     height: 179px;
     background-size: 100%;
@@ -206,6 +212,12 @@ body {
         background-color: hsl(207, 26%, 17%);
     }
 
+    .border-btn:hover {
+        color: #78aaec;
+        box-shadow: 0 0 5px 2px #4274B7 !important;
+        font-weight: bold;
+    }
+
     .btn-search,
     .dropdown-item:hover,
     .scroll-btn {
@@ -238,6 +250,12 @@ body {
         .country-info,
         .offcanvas-btn {
             background-color: white;
+        }
+
+        .border-btn:hover {
+            color: #4274B7;
+            box-shadow: 0 0 5px 2px #4274B7 !important;
+            font-weight: bold;
         }
 
         .btn-search,
