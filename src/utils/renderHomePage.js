@@ -126,4 +126,5 @@ const styleDropdown = (() => {
             dropdown.classList.remove("dropdown-menu-active");
         })
     })
+
 })();

@@ -30,36 +30,33 @@ export function renderCountryData(data, type) {
 
             bodyPage.appendChild(document.createElement("div"))
                 .innerHTML = `
-                        <a href="/#/${countryName.toLowerCase().replaceAll(" ", "-")}" class="text-decoration-none" role="button" data-bs-toggle="offcanvas" data-bs-target="#countryOffcanvas" aria-controls="countryOffcanvas" data-card>
-                            <div class="card country-card shadow border-0 col-sm-6 card-container">
+                        <button class="p-0 border-0 rounded" role="button" data-bs-toggle="offcanvas" data-bs-target="#countryOffcanvas" aria-controls="countryOffcanvas" data-card>
+                            <div class="card country-card shadow border-0 col-sm-6 text-start card-container">
                                 <div class="card-img-top shadow-sm fi fi-${countryFlag} country-flag">
                                 </div>
                                 <div class="d-flex flex-column card-body">
                                     <span class="card-title nunito-bolder mb-3" data-card-title>
                                         ${countryName}
                                     </span>
-                                    <span class="card-text">
+                                    <span class="card-text" style="padding: .1rem 0 .1rem 0">
                                         <b>Population:</b>
                                         ${new Intl.NumberFormat().format(countryPop)}
                                     </span>
-                                    <span class="card-text">
+                                    <span class="card-text" style="padding: .1rem 0 .1rem 0">
                                         <b>Region:</b>
                                         ${countryRegion}
                                     </span>
-                                    <span class="card-text">
+                                    <span class="card-text" style="padding: .1rem 0 .1rem 0">
                                         <b>${multipleCapitals() ? "Capitals:" : "Capital:"}</b>
                                         ${isUndefined(countryCapital) ? "" : countryCapital.join(', ')}
                                     </span>
                                 </div>
                             </div>
-                        </a>
+                        </button>
 
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
                         </div>
                     `
-
-
-
             break;
 
         case 'search404':
@@ -85,3 +82,5 @@ export function renderCountryData(data, type) {
             break;
     }
 }
+
+

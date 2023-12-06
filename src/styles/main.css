@@ -50,11 +50,10 @@ body {
     height: 22rem;
 }
 
-.card-container:hover,
-.card-container:active {
+/* .card-container:hover {
     transform: scale(110%);
     transition: .2s;
-}
+} */
 
 .country-flag {
     height: 179px;
@@ -150,10 +149,6 @@ body {
     .offcanvas {
         --bs-offcanvas-width: 100vw;
     }
-
-    .offcanvas-title {
-        font-size: 2.3rem !important;
-    }
 }
 
 @media (max-width: 1400px) and (min-width: 1300px) {
@@ -195,12 +190,19 @@ body {
 
 @media (max-width: 400px) {
     #sorter {
-        width: 15rem !important;
+        width: 13rem !important;
     }
 
     .flag {
         height: 290px !important;
         margin-bottom: .5rem;
+    }
+}
+
+@media (min-width: 1300px) {
+    .card-container:hover {
+        transform: scale(110%);
+        transition: .2s;
     }
 }
 

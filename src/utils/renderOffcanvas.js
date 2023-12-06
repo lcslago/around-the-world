@@ -123,17 +123,16 @@ export function renderOffcanvas(data, context) {
                                 </div>
                                 <div class="borders px-3 container d-flex align-items-start h-25 w-100 align-items-start gap-2">
                                     <div class="d-flex gap-2 flex-wrap" style="width: 100%;">
-                                    <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
+                                        <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
                                         ${isUndefined(sortedBorders) ? "" : sortedBorders.map(border => `
-                                        <div class="btn border-btn d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
+                                        <button class="border-btn rounded d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
                                         data-country-borders>
                                             <div
-                                                href="#" 
                                                 class="text-decoration-none
                                                 fi fi-${getBorderFlag(border)}"></div>
 
                                             <p class="m-0">${getBorderName(border)}</p>
-                                        </div>`).join('')}  
+                                        </button>`).join('')}  
                                     </div>
                                 </div>
                             </div>
@@ -157,4 +156,23 @@ function getBordersData(arr, item) {
     const countryResult = arr
         .find(country => country.cca3 === item);
     return countryResult ? countryResult : '';
+}
+
+export function createStateOffcanvas() {
+    const bodyPage = document.querySelector('[data-country-cards]');
+    bodyPage.addEventListener('click', event => {
+        const cardClicked = event.target.closest('[data-card]');
+
+        if (cardClicked) {
+            const offcanvasInstace = document.querySelector('[data-offcanvas]');
+            const offcanvasInstanceBS = bootstrap.Offcanvas.getInstance(offcanvasInstace);
+
+            history.state === null &&
+                history.pushState({ offcanvasOpened: true }, "offcanvas", './')
+
+            window.addEventListener('popstate', () => {
+                offcanvasInstanceBS.hide();
+            })
+        }
+    })
 }
