@@ -113,3 +113,17 @@ function setCardPerScroll() {
         return 20;
     }
 }
+
+const styleDropdown = (() => {
+    const dropdowns = document.querySelectorAll('[data-dropdown-container]');
+
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('shown.bs.dropdown', () => {
+            dropdown.classList.add("dropdown-menu-active");
+        })
+
+        dropdown.addEventListener('hide.bs.dropdown', () => {
+            dropdown.classList.remove("dropdown-menu-active");
+        })
+    })
+})();

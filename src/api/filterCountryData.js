@@ -12,6 +12,10 @@ let isSearching = false;
 let filteredCountryList;
 let searchResults;
 let regionValue;
+
+const regionLabelMemory = $('[data-filter-label]').innerText;
+const sortLabelMemory = $('[data-sort-label]').innerText;
+
 export const regionOptions = $All('[data-region]')
 
 export function filterCountryData(arr) {
@@ -28,20 +32,35 @@ export function filterCountryData(arr) {
             regionValue = region.innerHTML;
             $('[data-filter-label]').innerHTML = `<b>${region.innerHTML}</b>`;
 
+
+
             filteredCountryList = countryList
                 .filter((country) => country
                     .region === `${filteredCountryRegions[index]}`);
 
             renderFilteredResults(filteredCountryList);
+            searchCountryData(filteredCountryList);
 
             filteredCountryList.length === 0 &&
                 renderCountryData(null, 'filter404');
 
             sortCountryData(filteredCountryList);
             isFiltering = true;
+
+            $('#filter').classList.add("dropdown-menu-filtered");
         })
     })
     searchCountryData(countryList);
+}
+
+function resetFilters() {
+    $All('[data-dropdown-container]')
+        .forEach(dropdown =>
+            dropdown.classList
+                .remove("dropdown-menu-filtered"));
+
+    $('[data-filter-label]').innerHTML = regionLabelMemory;
+    $('[data-sort-label]').innerHTML = sortLabelMemory;
 }
 
 export function getRegions(arr) {
@@ -113,6 +132,7 @@ function returnSearchResults(arr, searchTerm) {
 }
 
 function startSearching(arr) {
+    resetFilters();
     const searchValue = searchBar.value.trim().toLowerCase();
     const clearSearchBar = () => searchBar.value = "";
     const sortLabelMemory = sortLabel.innerHTML;

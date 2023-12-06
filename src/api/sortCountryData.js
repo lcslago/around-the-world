@@ -35,18 +35,23 @@ function sort(countryData, type) {
 
     switch (type) {
         case nameAscending:
-            $('[data-sort-label]').innerHTML = `<b>${nameAscending}</b>`;
+            StyleSortFor(nameAscending);
             return sortByName(countryData);
         case nameDescending:
-            $('[data-sort-label]').innerHTML = `<b>${nameDescending}</b>`;
+            StyleSortFor(nameDescending);
             return sortByName(countryData).reverse();
         case mostPopulated:
-            $('[data-sort-label]').innerHTML = `<b>${mostPopulated}</b>`;
+            StyleSortFor(mostPopulated);
             return sortByPopulation(countryData).reverse();
         case leastPopulated:
-            $('[data-sort-label]').innerHTML = `<b>${leastPopulated}</b>`;
+            StyleSortFor(leastPopulated);
             return sortByPopulation(countryData);
     }
+}
+
+function StyleSortFor(sortType) {
+    $('[data-sort-label]').innerHTML = `<b>${sortType}</b>`;
+    $('#sorter').classList.add("dropdown-menu-filtered");
 }
 
 export function sortByName(arr) {
