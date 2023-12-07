@@ -23,6 +23,9 @@ export function sortCountryData(arr) {
                 renderResults(dataSorted, cardsPerScroll);
 
             filterCountryData(dataSorted);
+
+            dataSorted.length === 0 &&
+                renderCountryData(null, 'sort404');
         });
     })
 }

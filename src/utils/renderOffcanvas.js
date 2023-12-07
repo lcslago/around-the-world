@@ -126,6 +126,7 @@ export function renderOffcanvas(data, context) {
                                         <p class="m-0 fs-5 p-1"><b>${multipleData(sortedBorders) ? "Border Countries" : "Border Country"}:</b></p>
                                         ${isUndefined(sortedBorders) ? "" : sortedBorders.map(border => `
                                         <button class="border-btn rounded d-flex gap-2 align-items-center px-2 w-auto offcanvas-btn shadow"
+                                        style="height: 38px;"
                                         data-country-borders>
                                             <div
                                                 class="text-decoration-none
