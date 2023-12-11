@@ -18,16 +18,20 @@
         }
     </script>
     <script src="./src/constants/svgIcons.js"></script>
-    <title>Where in the world?</title>
+    <script>render(favIcon)</script>
+    <title>Around the world</title>
 </head>
 
 <body class="body">
+
     <header class="shadow-sm position-relative">
         <nav class="container navbar pt-4 pb-4">
             <div class="container-fluid d-flex flex-column flex-md-row gap-md-0 gap-2 align-items-center">
                 <nav class="navbar-brand m-0 p-0">
-                    <a class="navbar-brand m-0 p-0 fs-3 fw-bold nunito-bolder" href="./">
-                        Where in the world?
+                    <a class="d-flex align-items-center justify-content-center gap-1 opacity-75 navbar-brand m-0 p-0 fs-3 fw-bold nunito-bolder user-select-none"
+                        href="./">
+                        <script>render(projectLogo)</script>
+                        Around the world
                     </a>
                 </nav>
                 <button
@@ -175,8 +179,17 @@
         </div>
     </footer>
 
-
     <script src="./src/app.js" type="module"></script>
+    <noscript>
+        <style>
+            header,
+            main,
+            footer {
+                display: none !important;
+            }
+        </style>
+        <p style="font-size: 2rem; text-align: center;">JavaScript Required.</p>
+    </noscript>
 </body>
 
 </html>
