@@ -1,17 +1,32 @@
 const versionOfAPI = "v3.1"
-const endpointOfAPI = `https://restcountries.com/${versionOfAPI}/`;
+const endpointOfAPI = `https://restcountries.com/${versionOfAPI}/all`;
 
 async function fetchCountryData() {
     try {
         let responseArr = [];
-        const response = (await fetch(`${endpointOfAPI}all`));
-        responseArr = await response.json();
+        const response = await fetch(`${endpointOfAPI}`);
 
-        const shuffledData = shuffleCountryData(responseArr);
-        postMessage(shuffledData);
+        if (response.ok) {
+            responseArr = await response.json();
+            const shuffledData = shuffleCountryData(responseArr);
+            postMessage(shuffledData);
+        } else {
+            response.status >= 500
+                && postMessage({ error: 'ServerError' });
+            (response.status >= 400 && response.status < 500)
+                && postMessage({ error: 'ClientError' });
+
+            console.log(`Error: code ${response.status}`);
+        }
 
     } catch (error) {
-        console.error('Error:', error);
+        if (error instanceof TypeError) {
+            postMessage({ error: 'TypeError' });
+            console.error('Error:', error.name, '-> Check the fetch URL or API version');
+        } else {
+            postMessage({ error: 'Misc' });
+            console.error(error);
+        }
     }
 }
 

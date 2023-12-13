@@ -10,6 +10,14 @@ export function renderCountryData(data, type) {
         `There was no country from <strong>${returnRegionValue()}</strong> in your search results.`
     const sort404Message =
         `There is no country to sort.`
+    const typeErrorMessage =
+        `No data found on the current database address.`
+    const serverErrorMessage =
+        `Code 500: The server found an error and could not complete your request.`
+    const clientErrorMessage =
+        `Code 400: The data requested could not be found on the server.`
+    const miscErrorMessage =
+        `An Error ocurred.`
 
     switch (type) {
         case 'card':
@@ -53,24 +61,45 @@ export function renderCountryData(data, type) {
                     `
             break;
 
+        //erros na aplicação
         case 'search404':
             renderErrorMessage(search404Message);
             break;
-
         case 'filter404':
             renderErrorMessage(filter404Message);
             break;
-
         case 'sort404':
             renderErrorMessage(sort404Message);
+            break;
+
+        //erros na API
+        case 'typeError':
+            renderErrorMessage(
+                typeErrorMessage,
+                typeErrorIcon, "Data");
+            break;
+        case 'miscError':
+            renderErrorMessage(
+                miscErrorMessage,
+                typeErrorIcon, "Data");
+            break;
+        case 'serverError':
+            renderErrorMessage(
+                serverErrorMessage,
+                serverErrorIcon, "Data");
+            break;
+        case 'clientError':
+            renderErrorMessage(
+                clientErrorMessage,
+                clientErrorIcon, "Data");
             break;
     }
 }
 
-function renderErrorMessage(message) {
+function renderErrorMessage(message, icon, title) {
     const resultErrorMessage = (message) => `
-                            <div class="container d-flex flex-column text-center gap-1">
-                                <h2 class="nunito-bolder">Result not found</h2>
+                            <div class="container d-flex flex-column text-center gap-2">
+                                <h2 class="nunito-bolder">${!title ? "Result" : title} not found</h2>
                                 <p class="col-lg-5 m-auto">
                                     ${message}
                                 </p>
@@ -82,7 +111,7 @@ function renderErrorMessage(message) {
     return (
         divElement.innerHTML = `
                     <div class="d-flex flex-column align-items-center gap-3 search-404">
-                            ${resultErrorIcon}
+                            ${!icon ? resultErrorIcon : icon}
                             ${resultErrorMessage(`${message}`)}
                     </div>
                     `
