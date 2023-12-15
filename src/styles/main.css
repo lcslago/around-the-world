@@ -20,6 +20,14 @@ body {
     font-family: 'nunito-sans-bolder', 'sans-serif';
 }
 
+#logo {
+    width: 35px;
+    height: 35px;
+    background-image: url('./../../favico.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .search-bar {
     width: 50%;
 }

@@ -160,7 +160,9 @@ function getBordersData(arr, item) {
 }
 
 export function createStateOffcanvas() {
+
     const bodyPage = document.querySelector('[data-country-cards]');
+
     bodyPage.addEventListener('click', event => {
         const cardClicked = event.target.closest('[data-card]');
 
