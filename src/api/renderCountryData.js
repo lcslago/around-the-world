@@ -1,3 +1,9 @@
+import {
+    clientErrorIcon,
+    resultErrorIcon,
+    serverErrorIcon,
+    typeErrorIcon
+} from "../constants/httpStatusSvgIcons.js";
 import { returnRegionValue } from "./filterCountryData.js";
 
 const bodyPage = document.querySelector('[data-country-cards]');
