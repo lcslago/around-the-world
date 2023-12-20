@@ -62,7 +62,7 @@ export function renderCountryData(data, type) {
                             </div>
                         </button>
 
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
+                        <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="countryOffcanvas" aria-labelledby="countryLabel" data-offcanvas>
                         </div>
                     `
             break;
